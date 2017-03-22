@@ -3,7 +3,7 @@
   
     
     <entry>
-      <title><![CDATA[hexo 踩过的坑]]></title>
+      <title><![CDATA[Hexo 踩过的坑]]></title>
       <url>%2F2017%2F03%2F22%2Fhexo-%E7%88%AC%E8%BF%87%E7%9A%84%E5%9D%91%2F</url>
       <content type="text"><![CDATA[{ [Error: Cannot find module ‘./build/Release/DTraceProviderBindings’] code: ‘MODULE_NOT_FOUND’ } { [Error: Cannot find module ‘./build/default/DTraceProviderBindings’] code: ‘MODULE_NOT_FOUND’ } { [Error: Cannot find module ‘./build/Debug/DTraceProviderBindings’] code: ‘MODULE_NOT_FOUND’ } 出现上面错误，执行该npm install hexo –no-optional语句即可]]></content>
     </entry>
