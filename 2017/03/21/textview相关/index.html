@@ -87,16 +87,21 @@
 
 
 
-<meta name="description" content="textview在xib约束之后，出现文字显示偏移的问题…">
+<meta name="description" content="textView 在xib中进行相应约束（以plus为基准）之后，在直接填充文字状态下，出现在6或6s中文字向上偏移被遮盖的现象如果在awakeFromNib方法里直接setContentOffset为（0，0），没有效果，然后打个断点之后在执行，就可以了，所以猜测是有时间延迟然后改成下面的样子：
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="textview相关">
 <meta property="og:url" content="https://gxh724536512.github.io/2017/03/21/textview相关/index.html">
 <meta property="og:site_name" content="Poetry and distance">
-<meta property="og:description" content="textview在xib约束之后，出现文字显示偏移的问题…">
-<meta property="og:updated_time" content="2017-03-22T06:23:16.000Z">
+<meta property="og:description" content="textView 在xib中进行相应约束（以plus为基准）之后，在直接填充文字状态下，出现在6或6s中文字向上偏移被遮盖的现象如果在awakeFromNib方法里直接setContentOffset为（0，0），没有效果，然后打个断点之后在执行，就可以了，所以猜测是有时间延迟然后改成下面的样子：
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (i">
+<meta property="og:image" content="http://on7n65mn0.bkt.clouddn.com/567082-e042e4c87f6d4361.png?attname=&e=1490180843&token=L2E64OuRn3B_51HfKMUpv7ZFRxiGAZv1XMG4K-zb:cx4VabEYDmgjOoYKLifhPPWOk0U">
+<meta property="og:updated_time" content="2017-03-22T10:08:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="textview相关">
-<meta name="twitter:description" content="textview在xib约束之后，出现文字显示偏移的问题…">
+<meta name="twitter:description" content="textView 在xib中进行相应约束（以plus为基准）之后，在直接填充文字状态下，出现在6或6s中文字向上偏移被遮盖的现象如果在awakeFromNib方法里直接setContentOffset为（0，0），没有效果，然后打个断点之后在执行，就可以了，所以猜测是有时间延迟然后改成下面的样子：
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (i">
+<meta name="twitter:image" content="http://on7n65mn0.bkt.clouddn.com/567082-e042e4c87f6d4361.png?attname=&e=1490180843&token=L2E64OuRn3B_51HfKMUpv7ZFRxiGAZv1XMG4K-zb:cx4VabEYDmgjOoYKLifhPPWOk0U">
 
 
 
@@ -427,7 +432,13 @@
       
 
       
-        <h2 id="textview在xib约束之后，出现文字显示偏移的问题…"><a href="#textview在xib约束之后，出现文字显示偏移的问题…" class="headerlink" title="textview在xib约束之后，出现文字显示偏移的问题…"></a>textview在xib约束之后，出现文字显示偏移的问题…</h2>
+        <h2 id="textView-在xib中进行相应约束（以plus为基准）之后，在直接填充文字状态下，出现在6或6s中文字向上偏移被遮盖的现象"><a href="#textView-在xib中进行相应约束（以plus为基准）之后，在直接填充文字状态下，出现在6或6s中文字向上偏移被遮盖的现象" class="headerlink" title="textView 在xib中进行相应约束（以plus为基准）之后，在直接填充文字状态下，出现在6或6s中文字向上偏移被遮盖的现象"></a>textView 在xib中进行相应约束（以plus为基准）之后，在直接填充文字状态下，出现在6或6s中文字向上偏移被遮盖的现象</h2><h1 id=""><a href="#" class="headerlink" title=""></a><img src="http://on7n65mn0.bkt.clouddn.com/567082-e042e4c87f6d4361.png?attname=&amp;e=1490180843&amp;token=L2E64OuRn3B_51HfKMUpv7ZFRxiGAZv1XMG4K-zb:cx4VabEYDmgjOoYKLifhPPWOk0U" alt=""></h1><h2 id="如果在awakeFromNib方法里直接setContentOffset为（0，0），没有效果，然后打个断点之后在执行，就可以了，所以猜测是有时间延迟"><a href="#如果在awakeFromNib方法里直接setContentOffset为（0，0），没有效果，然后打个断点之后在执行，就可以了，所以猜测是有时间延迟" class="headerlink" title="如果在awakeFromNib方法里直接setContentOffset为（0，0），没有效果，然后打个断点之后在执行，就可以了，所以猜测是有时间延迟"></a>如果在awakeFromNib方法里直接setContentOffset为（0，0），没有效果，然后打个断点之后在执行，就可以了，所以猜测是有时间延迟</h2><h3 id="然后改成下面的样子："><a href="#然后改成下面的样子：" class="headerlink" title="然后改成下面的样子："></a>然后改成下面的样子：</h3><blockquote>
+<p>dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{</p>
+<p>[textView setContentOffset:CGPointMake(0, 0)];</p>
+<p>});</p>
+</blockquote>
+<p>这样就可以了，不过具体原因还要进一步探讨</p>
+
       
     </div>
 
@@ -648,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#textview在xib约束之后，出现文字显示偏移的问题…"><span class="nav-number">1.</span> <span class="nav-text">textview在xib约束之后，出现文字显示偏移的问题…</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#textView-在xib中进行相应约束（以plus为基准）之后，在直接填充文字状态下，出现在6或6s中文字向上偏移被遮盖的现象"><span class="nav-number">1.</span> <span class="nav-text">textView 在xib中进行相应约束（以plus为基准）之后，在直接填充文字状态下，出现在6或6s中文字向上偏移被遮盖的现象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如果在awakeFromNib方法里直接setContentOffset为（0，0），没有效果，然后打个断点之后在执行，就可以了，所以猜测是有时间延迟"><span class="nav-number">1.</span> <span class="nav-text">如果在awakeFromNib方法里直接setContentOffset为（0，0），没有效果，然后打个断点之后在执行，就可以了，所以猜测是有时间延迟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#然后改成下面的样子："><span class="nav-number">1.1.</span> <span class="nav-text">然后改成下面的样子：</span></a></li></ol></li></ol></div>
             
 
           </div>
